@@ -1,4 +1,4 @@
-Hi, my name is Jake Power, I am a junior at Florida State University, 
+Hi, my name is Jake Power, I am a senior at Florida State University, 
 and I am a computer science major interested in Cybersecurity! This project is my very
 own implementation of the New York Times' Wordle game, except with a few twists. Like
 the original, my game is also designed to give users the chance to guess a word in 6 
