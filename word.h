@@ -9,7 +9,7 @@
 #include <random>
 #include <fstream>
 #include<ctime>
-#include "Player.h"
+#include "player.h"
 using namespace std;
 class Word {
     friend class Player;
@@ -26,6 +26,7 @@ public:
 
 private:
     string word;
+    vector <string> guessedWords;
     Player *nameList;
     string dailyWord;
     int maxSize,current,sz,index;

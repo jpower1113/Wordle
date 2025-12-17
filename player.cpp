@@ -1,7 +1,7 @@
 //
 // Created by Jake Power on 2/25/24.
 //
-#include "Player.h"
+#include "player.h"
 
 Player::Player()
 {

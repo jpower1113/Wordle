@@ -1,12 +1,13 @@
 //
 // Created by Jake Power on 2/23/24.
 //
-#include "Word.h"
+#include "word.h"
 #include <ctime>
 #include <cstdlib>		// for rand(), srand()
 #include <string>
 #include <fstream>
 #include <stdlib.h>
+#include <cctype>
 #include <algorithm>
 #define RESET   "\033[0m"
 #define GREEN   "\033[32m"
@@ -63,6 +64,7 @@ string Word::setWord(string s)
         cin>>s;
     }
     word = s;
+    guessedWords.push_back(word);
     return word;
 }
 string Word::getWord()
@@ -97,56 +99,68 @@ void Word::PlayGame()
             }
         }
         changeUsername(index);
-        while (count != 6 && !Compare()) {
+        while (count != 6 && !Compare()) 
+        {
             count++;
             cin.clear();
             cout << "\nPlease enter guess #" << count << ", press 1 to display the rules, press 2 to display your total score, press 3 to display ALL letters guessed, or press 4 to display guessed letters that are found in the Wordle   \n";
             cin >> s;
             temp = toLower(s);
-            while (temp == "1")
+            while (isdigit(temp[0]) == 1)
             {
-                DisplayRules();
-                if (count > 1) {
-                    cout << "\nYour guess for guess #" << count - 1 << " is: ";
-                    lookForLetter();
-                }
-                cout << "\nPlease enter guess #" << count << endl;
-                cin >> s;
-                temp = toLower(s);
-            }
-            while (temp == "2")
-            {
-                cout<<"Your total score is "<<nameList[current].score<<endl;
-                if (count > 1) {
-                    cout << "\nYour guess for guess #" << count - 1 << " is: ";
-                    lookForLetter();
-                }
-                cout << "\nPlease enter guess #" << count << endl;
-                cin >> s;
-                temp = toLower(s);
-            }
-            while (temp == "3")
-            {
-                cout<<"The letters you have guessed so far are: ";
-                for(int i=0;i<sz;i++)
+                switch(temp[0])
                 {
-                    
-                    cout<<guessedLetters[i]<<", ";
+                    case '1':
+                    {
+                        DisplayRules();
+                        if (count > 1) {
+                            cout << "\nYour guess for guess #" << count - 1 << " is: ";
+                            lookForLetter();
+                        }
+                        break;
+                        /*cout << "\nPlease enter guess #" << count<< ", press 1 to display the rules, press 2 to display your total score, press 3 to display ALL letters guessed, or press 4 to display guessed letters that are found in the Wordle   \n" << endl;
+                        cin >> s;
+                        temp = toLower(s);*/
+                    }
+                    case '2':
+                    {
+                        cout<<"Your total score is "<<nameList[current].score<<endl;
+                        if (count > 1) {
+                            cout << "\nYour guess for guess #" << count - 1 << " is: ";
+                            lookForLetter();
+                        }
+                        break;
+                    }
+                    case '3':
+                    {
+                        cout<<"The letters you have guessed so far are: ";
+                        for(int i=0;i<sz;i++)
+                        {
+                            cout<<guessedLetters[i]<<", ";
+                        }
+                        break;
+                    }
+                    case '4':
+                    {
+                        cout<<"The letters you have guessed so far that are found in the Wordle: ";
+                        for(int i=0;i<correctLetters.size();i++)
+                        {
+                            cout<<correctLetters[i]<<", ";
+                        }
+                        break;
+                    }
+                    /*case '5':
+                    {
+                        cout<<"\n All the previously guessed words: "<<endl;
+                        for(auto x:guessedWords)
+                        {
+                            lookForLetter();
+                        }
+                        break;
+                    }*/
                 }
                 cout<<endl;
-                cout << "\nPlease enter guess #" << count << endl;
-                cin >> s;
-                temp = toLower(s);
-            }
-            while (temp == "4")
-            {
-                cout<<"The letters you have guessed so far that are found in the Wordle: ";
-                for(int i=0;i<correctLetters.size();i++)
-                {
-                    cout<<correctLetters[i]<<", ";
-                }
-                cout<<endl;
-                cout << "\nPlease enter guess #" << count << endl;
+                cout << "\nPlease enter guess #" << count<< ", press 1 to display the rules, press 2 to display your total score, press 3 to display ALL letters guessed, or press 4 to display guessed letters that are found in the Wordle   \n" << endl;
                 cin >> s;
                 temp = toLower(s);
             }
