@@ -7,6 +7,6 @@ solved in, and based on that a score is assigned. I also allow players to go bac
 forth with by asking if a player would like to enter a new username, and their score is 
 assigned to their respective username. Once a user/s decide they've played enough, 
 their total scores are uploaded to a text file  
-
+To try the game out for yourself, launch a codespace, and when that is up, run the command: ./game
 
 note that if you want to try it on your local machine download PowerWordle.zip
